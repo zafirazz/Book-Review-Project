@@ -5,19 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
+    <div class="header"> 
+        <a href="home.html" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
+    </div>
+    <div class="navbar">
+        <div class="navbar_left">
+           
+            <a href="search.html" class="search">Search</a>
+            <a href="review.html" class="review">Review now!</a>
+        </div>
+        <div class="navbar_right">
+            <a href="login.html" class="login">Login</a>
+            <a href="register.html" class="register">Register</a>
+        </div>
+    </div>
+
     <div class="content">
-        <a href="home.html" class="home"><img src="logo.png" alt="Brand Logo" class="logo"></a>
         <div class="login-form">
-            <h2>Login</h2>
+            <h2 class="green-text">Login</h2>
               <form action="login-process.html" method="post">
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
+                
+                <br><br>
                 <input type="submit" value="Login">
             </form>
         </div>
     </div>
+
+
+
     <div class="footer">
         &copy; 2024 Book Reviewer
     </div>

@@ -3,9 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 import requests
 import pandas as pd
 import time
+from sqlalchemy import create_engine
+
+engine = create_engine('postgresql+psycopg2://julia:new_password@localhost:5432/your_database')
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'  
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://julia:new_password@localhost:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

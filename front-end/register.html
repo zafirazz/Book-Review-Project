@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        a .home {
-            width: 60px;
-            height: auto;
-        }
-        .content {
-            padding: 20px;
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static',filename='register.css') }}">
 </head>
 <body>
+
+    <div class="content">
+        <div class="login-form">
+            <h2 class="green-text">Register!</h2>
+                <form method="POST" action="{{ url_for('register') }}">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="password_confirm">Confirm Password:</label>
+                    <input type="password" id="password_confirm" name="password_confirm" required><br>
+
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required><br>
+
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required><br>
+
+                    <button type="submit">Register</button>
+                    <br><br>
+            </form>
+        </div>
+    </div>
+
+
+
     <a href="home.html" class="home"><img src="logo.png" alt="Brand Logo" class="logo"></a>
     <div class="content">
     </div>

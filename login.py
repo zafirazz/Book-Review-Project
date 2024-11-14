@@ -8,11 +8,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 
-engine = create_engine('postgresql+psycopg2://julia:new_password@localhost:5432/postgres')
+#engine = create_engine('postgresql+psycopg2://[username]:[password]@localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://julia:new_password@localhost:5432/postgres'
-app.secret_key="hioergerhgoierhgierhogiehgoieagawoeigyireyg"
+#app.config['SQLALCHEMY_DATABASE_URI'] = ['enter your URL']
+#app.secret_key=["enter your secret key"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -102,6 +102,7 @@ def home():
 def logout():
     # TODO
     return 0
+
 
 def initialize_database():
     with app.app_context():

@@ -1,28 +1,20 @@
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify, render_template
+from sqlalchemy.orm import sessionmaker
 import requests
 import pandas as pd
 import time
 from sqlalchemy import create_engine
+from db import db as db2
+from models import Book
 
-engine = create_engine('postgresql+psycopg2://julia:new_password@localhost:5432/your_database')
-
+engine = create_engine('postgresql://localhost:5432/postgres')
+Session = sessionmaker(bind=engine)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://julia:new_password@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-
-class Book(db.Model):
-    __tablename__ = 'books'
-    isbn = db.Column(db.String(13), primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
-    author = db.Column(db.String(255), nullable=False)
-    short_description = db.Column(db.Text, nullable=False)
-    year = db.Column(db.Integer)
-    cover_url = db.Column(db.String(500))
-
+db2.init_app(app)
 
 def fetch_book_data(isbn):
     response = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}")
@@ -44,6 +36,7 @@ def fetch_book_data(isbn):
 
 def add_books_bulk(isbns):
     books_to_add = []
+    session = Session()
     for isbn in isbns:
         book_data = fetch_book_data(isbn)
         if book_data:
@@ -96,7 +89,6 @@ def get_books():
             'cover_url': book.cover_url
         } for book in books
     ])
-
 
 if __name__ == '__main__':
     initialize_database()

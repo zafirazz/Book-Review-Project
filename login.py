@@ -4,39 +4,33 @@ third: add username, password to the database"""
 import logging
 from functools import wraps
 from flask import g, request, redirect, url_for, session, render_template, Flask
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from db import db
+from models import Book, User_Data
+
 
 #engine = create_engine('postgresql+psycopg2://[username]:[password]@localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-#app.config['SQLALCHEMY_DATABASE_URI'] = ['enter your URL']
-#app.secret_key=["enter your secret key"]
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
+app.secret_key=["enteryoursecretkey"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+
+db.init_app(app)
 
 
-class User_Data(db.Model):
-    __tablename__ = 'User_Data'
-    ID = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
-    first_name = db.Column(db.String(255), nullable=False)
-    last_name = db.Column(db.String(255), nullable=False)
-
-
-"""
-Decorator that forces login (to review a book)
-https://flask.palletsprojects.com/en/stable/patterns/viewdecorators/
+#Decorator that forces login (to review a book)
+#https://flask.palletsprojects.com/en/stable/patterns/viewdecorators/
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if g.user is None:
-            return redirect(url_for('login', next=request.url))
+        if session.get('username') is None or session.get('logged_in') is None:
+            logging.debug("i am in decorated function")
+            return redirect(url_for('login'))
         return f(*args, **kwargs)
 
-    return decorated_function"""
+    return decorated_function
 
 
 @app.route('/front-end/register', methods=['GET', 'POST'])
@@ -64,7 +58,6 @@ def register():
     return render_template('register.html')
 
 
-#not sure what top=code and bottom=message means yet!!!!!!!!!!
 def login_error(message, code=400):
     return render_template("login_error.html", top=code, bottom=message), code
 
@@ -85,9 +78,11 @@ def login():
             if check_password_hash(user.password, password):
                 logging.debug("password is correct")
                 session['user_id'] = user.ID
+                session['username'] = user.username
                 logging.debug("User logged in")
+                session['logged_in'] = True
                 db.session.commit()
-                return redirect(url_for('home'))
+                return redirect(url_for('review'))
             else:
                 logging.debug("password is invalid!")
         return login_error("invalid username or password", 401)
@@ -98,10 +93,23 @@ def login():
 def home():
     return render_template('home.html')
 
+
+@app.route('/front-end/search', methods=['GET', 'POST'])
+def search():
+    return render_template('search.html')
+
+
 @app.route('/front-end/logout', methods=['GET', 'POST'])
 def logout():
     # TODO
     return 0
+
+@app.route('/front-end/review', methods=['GET', 'POST'])
+@login_required
+def review():
+    logging.debug("i am in review function")
+    books = Book.query.all()
+    return render_template('review.html', books=books)
 
 
 def initialize_database():

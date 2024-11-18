@@ -1,15 +1,17 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 import requests
 import pandas as pd
 import time
 from sqlalchemy import create_engine
 
-engine = create_engine('postgresql+psycopg2://julia:new_password@localhost:5432/your_database')
-
+engine = create_engine('postgresql://localhost:5432/postgres')
+Session = sessionmaker(bind=engine)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://julia:new_password@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -44,6 +46,7 @@ def fetch_book_data(isbn):
 
 def add_books_bulk(isbns):
     books_to_add = []
+    session = Session()
     for isbn in isbns:
         book_data = fetch_book_data(isbn)
         if book_data:
@@ -96,7 +99,6 @@ def get_books():
             'cover_url': book.cover_url
         } for book in books
     ])
-
 
 if __name__ == '__main__':
     initialize_database()

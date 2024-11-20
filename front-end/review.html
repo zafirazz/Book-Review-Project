@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar_left">
+            <a href="{{ url_for('home') }}" class="home"><img src="logo.png" alt="Brand Logo" class="logo"></a>
+            <a href="{{ url_for('search') }}" class="search">Search</a>
+            <a href="{{ url_for('review') }}" class="review">Review now!</a>
+        </div>
+        <div class="navbar_right">
+            <a href="{{ url_for('login') }}" class="login">Login</a>
+            <a href="{{ url_for('register') }}" class="register">Register</a>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Available Books</h2>
+        {% for book in books %}
+        <div class="book">
+            <div class="book-cover">
+                <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
+            </div>
+            <div class="book-details">
+                <h3>{{ book.title }}</h3>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Release date:</strong> {{ book.year }}</p>
+                <p>{{ book.short_description }}</p>
+                <a href="/books/{{ book.isbn }}" class="view-details">Review »</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="footer">
+        &copy; 2024 Book Reviewer
+    </div>
+
+</body>
+</html>

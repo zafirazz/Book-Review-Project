@@ -9,12 +9,11 @@
 </head>
 <body>
     <div class="header"> 
-        <a href="home.html" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
+        <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
     </div>
     <div class="navbar">
         <div class="navbar_left">
-           
-            <a href="search.html" class="search">Search</a>
+            <a href="{{ url_for('search') }}" class="search">Search</a>
             <a href="../templates/review.html" class="review">Review now!</a>
         </div>
         <div class="navbar_right">

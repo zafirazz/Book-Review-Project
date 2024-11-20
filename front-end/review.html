@@ -3,50 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>Book List</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
 </head>
 <body>
-    <header>
-        <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
-    </header>
     <div class="navbar">
         <div class="navbar_left">
+            <a href="{{ url_for('home') }}" class="home"><img src="logo.png" alt="Brand Logo" class="logo"></a>
             <a href="{{ url_for('search') }}" class="search">Search</a>
+            <a href="{{ url_for('review') }}" class="review">Review now!</a>
         </div>
         <div class="navbar_right">
             <a href="{{ url_for('login') }}" class="login">Login</a>
             <a href="{{ url_for('register') }}" class="register">Register</a>
         </div>
     </div>
-
     <div class="content">
-        <h1>Submit Your Review</h1>
-        <form action="/submit-review" method="POST" class="review-form">
-            <label for="review-text">Your Review:</label><br>
-            <textarea id="review-text" name="review" rows="5" cols="40" required></textarea>
-            <br><br>
-            <label></label><br>
-            <div class="rating">
-                <input type="checkbox" id="star5" name="rating" value="5">
-                <label for="star5" class="star">&#9733;</label>
-                <input type="checkbox" id="star4" name="rating" value="4">
-                <label for="star4" class="star">&#9733;</label>
-                <input type="checkbox" id="star3" name="rating" value="3">
-                <label for="star3" class="star">&#9733;</label>
-                <input type="checkbox" id="star2" name="rating" value="2">
-                <label for="star2" class="star">&#9733;</label>
-                <input type="checkbox" id="star1" name="rating" value="1">
-                <label for="star1" class="star">&#9733;</label>
+        <h2>Available Books</h2>
+        {% for book in books %}
+        <div class="book">
+            <div class="book-cover">
+                <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
             </div>
-            <br><br>
-            <button type="submit" class="submit-btn">Submit Review</button>
-        </form>
+            <div class="book-details">
+                <h3>{{ book.title }}</h3>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Release date:</strong> {{ book.year }}</p>
+                <p>{{ book.short_description }}</p>
+                <a href="/books/{{ book.isbn }}" class="view-details">Review »</a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-
-    <footer>
+    <div class="footer">
         &copy; 2024 Book Reviewer
-    </footer>
+    </div>
 </body>
 </html>

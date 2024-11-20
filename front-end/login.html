@@ -5,42 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
 </head>
 <body>
-    <div class="header"> 
+    <header>
         <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
-    </div>
+    </header>
     <div class="navbar">
         <div class="navbar_left">
-           
-            <a href="../templates/review.html" class="review">Review now!</a>
             <a href="{{ url_for('search') }}" class="search">Search</a>
-
+            <a href="{{ url_for('review') }}" class="review">Review now!</a>
         </div>
         <div class="navbar_right">
-            <a href="{{ url_for('login') }}" class="login">Login</a>
             <a href="{{ url_for('register') }}" class="register">Register</a>
         </div>
     </div>
 
     <div class="content">
         <div class="login-form">
-            <h2 class="green-text">Login</h2>
+            <h2>Login</h2>
               <form method="POST" action="{{ url_for('login') }}">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
                 <br><br>
                 <input type="submit" value="Login">
             </form>
         </div>
     </div>
 
-
-
-    <div class="footer">
+    <footer>
         &copy; 2024 Book Reviewer
-    </div>
+    </footer>
 </body>
 </html>

@@ -4,25 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Reviewer</title>
-    <link rel="stylesheet" href="static/search.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
 </head>
 <body>
+    <header>
+        <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
+    </header>
     <div class="navbar">
         <div class="navbar_left">
-            <a href="home.html" class="home"><img src="logo.png" alt="Brand Logo" class="logo"></a>
-            <a href="search.html" class="search">Search</a>
-            <a href="../templates/review.html" class="review">Review now!</a>
+            <a href="{{ url_for('review') }}" class="review">Review now!</a>
         </div>
         <div class="navbar_right">
-            <a href="login.html" class="login">Login</a>
-            <a href="register.html" class="register">Register</a>
+            <a href="{{ url_for('login') }}" class="login">Login</a>
+            <a href="{{ url_for('register') }}" class="register">Register</a>
         </div>
     </div>
     <div class="content">
     </div>
 
-    <div class="footer">
+    <footer>
         &copy; 2024 Book Reviewer
-    </div>
+    </footer>
 </body>
 </html>

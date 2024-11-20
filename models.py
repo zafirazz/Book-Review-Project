@@ -16,4 +16,3 @@ class Book(db.Model):
     short_description = db.Column(db.Text, nullable=False)
     year = db.Column(db.Integer)
     cover_url = db.Column(db.String(500))
-

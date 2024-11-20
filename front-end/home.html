@@ -4,41 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Reviewer</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='front-end/static/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
     <link rel="icon" href="logo.png" type="image/x-icon">
 </head>
 <body>
-    <div class="header"> 
+    <header>
         <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
-    </div>
+    </header>
     <div class="navbar">
         <div class="navbar_left">
-            <a href="{{ url_for('search') }}" class="search">Search</a>
             <a href="../templates/review.html" class="review">Review now!</a>
+            <a href="{{ url_for('search') }}" class="search">Search</a>
         </div>
         <div class="navbar_right">
             <a href="{{ url_for('login') }}" class="login">Login</a>
             <a href="{{ url_for('register') }}" class="register">Register</a>
         </div>
     </div>
+
     <div class="content">
-        <h1 class="green-text">Share and Find your favorite books!</h1>
-        <br>
-        <h2 class="green-text">↓ Top Picks: Best Sellers You’ll Like ↓</h2>
+        <h1>Share and Find your favorite books!</h1>
+        <h2>↓ Top Picks: Best Sellers You’ll Like ↓</h2>
         <div class="book-list">
             <div class="book-item">
-                <img src="book1.jpg" alt="Me Before You">
                 <div class="book-title">Me Before You</div>
             </div>
             <div class="book-item">
-                <img src="book2.jpg" alt="The Blue Castle">
                 <div class="book-title">The Blue Castle</div>
             </div>
         </div>
     </div>
 
-    <div class="footer">
+    <footer>
         &copy; 2024 Book Reviewer
-    </div>
+    </footer>
 </body>
 </html>

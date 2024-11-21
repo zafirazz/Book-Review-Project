@@ -70,7 +70,10 @@ header{
     color: #467d47;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+
 }
+
 
 .login-form h2 {
     margin-bottom: 20px;

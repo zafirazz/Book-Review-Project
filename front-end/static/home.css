@@ -63,6 +63,7 @@ header{
     padding: 20px;
     margin-top: 0;
     color: #467d47;
+    min-height: 70vh;
 }
 
 .content h1 {
@@ -106,4 +107,6 @@ footer {
     color: #d8c2a3;
     bottom: 0;
     width: 100%;
+    /*position: sticky;*/
+
 }

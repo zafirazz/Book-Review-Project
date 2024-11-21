@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
 </head>
 <body>
-    <header>
-        <a href="{{ url_for('home') }}" ><img src="logo.png" alt="Brand Logo" class="logo"></a>
+   <header>
+        <a href="{{ url_for('home') }}" ><img src="{{ url_for('static', filename='logo.png') }}" alt="Brand Logo" class="logo"></a>
     </header>
     <div class="navbar">
         <div class="navbar_left">
+            <a href="{{ url_for('search') }}" class="search">Search</a>
             <a href="{{ url_for('review') }}" class="review">Review now!</a>
         </div>
         <div class="navbar_right">

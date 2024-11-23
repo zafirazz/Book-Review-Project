@@ -21,24 +21,25 @@
         </div>
     </div>
     <div class="content">
-        <h2>Available Books</h2>
+        <h1>Available Books</h1>
         {% for book in books %}
         <div class="book">
+            <h2>{{ book.title }}</h2>
             <div class="book-cover">
                 <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
             </div>
             <div class="book-details">
-                <h3>{{ book.title }}</h3>
-                <p><strong>Author:</strong> {{ book.author }}</p>
-                <p><strong>Release date:</strong> {{ book.year }}</p>
-                <p>{{ book.short_description }}</p>
-                <a href="/books/{{ book.isbn }}" class="view-details">Review »</a>
+<!--            <p>Title: <strong>{{ book.title }}</strong></p>-->
+                <p>Author: <strong>{{ book.author }}</strong></p>
+                <p>Release date: <strong>{{ book.year }}</strong></p>
+                <p>Description: <br>{{ book.short_description }}</p>
             </div>
+            <a href="/books/{{ book.isbn }}" class="view-btn">Review This Book!</a>
         </div>
         {% endfor %}
     </div>
-    <div class="footer">
+    <footer>
         &copy; 2024 Book Reviewer
-    </div>
+    </footer>
 </body>
 </html>

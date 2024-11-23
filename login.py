@@ -11,11 +11,11 @@ from db import db
 from models import Book, User_Data
 
 
-engine = create_engine('postgresql+psycopg2://alishba:alishba@localhost:5432/postgres')
+#engine = create_engine('postgresql+psycopg2://[username]:[password]@localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://alishba:alishba@localhost:5432/postgres'
-app.secret_key=["hioergerhgoierhgierhogiehgoieagawoeigyireyg"]
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
+app.secret_key=["enteryoursecretkey"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)

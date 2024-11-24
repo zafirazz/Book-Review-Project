@@ -1,3 +1,5 @@
+from sqlalchemy.orm import relationship
+
 from db import db
 
 class User_Data(db.Model):
@@ -16,3 +18,12 @@ class Book(db.Model):
     short_description = db.Column(db.Text, nullable=False)
     year = db.Column(db.Integer)
     cover_url = db.Column(db.String(500))
+
+class Review(db.Model):
+    __tablename__ = 'Review'
+    isbn = db.Column(db.String(13), db.ForeignKey('books.isbn'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User_Data.ID'), primary_key=True)
+    review = db.Column(db.Text, nullable=False)
+
+    user = relationship('User_Data', backref='reviews')
+    book = relationship('Book', backref='reviews')

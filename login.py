@@ -3,7 +3,7 @@ second: create database containing id, username, password and review
 third: add username, password to the database"""
 import logging
 from functools import wraps
-from flask import g, request, redirect, url_for, session, render_template, Flask
+from flask import g, request, redirect, url_for, session, render_template, Flask, jsonify
 from sqlalchemy import create_engine
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -11,10 +11,10 @@ from db import db
 from models import Book, User_Data
 
 
-engine = create_engine('postgresql+psycopg2://alishba:alishba@localhost:5432/postgres')
+engine = create_engine('postgresql://localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://alishba:alishba@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
 app.secret_key=["hioergerhgoierhgierhogiehgoieagawoeigyireyg"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -96,7 +96,15 @@ def home():
 
 @app.route('/front-end/search', methods=['GET', 'POST'])
 def search():
-    return render_template('search.html')
+    query = request.args.get('query', '').strip()
+    results = []
+
+    if query:
+        results = Book.query.filter(
+            (Book.title.ilike(f"%{query}%")) | (Book.author.ilike(f"%{query}%"))
+        ).all()
+
+    return render_template('search.html', query=query, results=results)
 
 
 @app.route('/front-end/logout', methods=['GET', 'POST'])
@@ -105,6 +113,7 @@ def logout():
     return 0
 
 @app.route('/front-end/review', methods=['GET', 'POST'])
+
 @login_required
 def review():
     logging.debug("i am in review function")

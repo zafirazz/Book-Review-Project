@@ -4,13 +4,21 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 header{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 200px;
-    overflow: hidden;
     background-color: #467d47;
 }
 
@@ -36,11 +44,6 @@ header{
     text-decoration: none;
     margin: 0 10px;
     font-weight: bold;
-}
-
-.navbar_left a img {
-    width: 120px;
-    height: auto;
 }
 
 .navbar_right a {
@@ -137,7 +140,8 @@ footer {
     padding: 10px;
     background-color: #467d47;
     color: #d8c2a3;
-    position: fixed;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
 }

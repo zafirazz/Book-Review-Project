@@ -19,7 +19,6 @@ header{
     align-items: center;
     width: 100%;
     height: 200px;
-    overflow: hidden;
     background-color: #467d47;
 }
 
@@ -29,15 +28,28 @@ header{
     justify-content: space-between;
     background-color: #467d47;
     padding: 10px 20px;
+    color: #d8c2a3;
     text-transform: uppercase;
     border-top:1px solid #d8c2a3;
     border-bottom:1px solid #d8c2a3;
 }
 
-.navbar .login {
-    margin-left: auto;
+.navbar_left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar_left a {
     color: #d8c2a3;
     text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.navbar_right a {
+    color: #d8c2a3;
+    text-decoration: none;
+    margin: 0 10px;
     font-weight: bold;
 }
 
@@ -54,7 +66,7 @@ header{
     max-width: 400px;
     padding: 50px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 4px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     color: #467d47;
 }
@@ -71,7 +83,7 @@ header{
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .login-form input[type="submit"] {
@@ -80,8 +92,7 @@ header{
     background-color: #467d47;
     color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
     font-weight: bold;
 }
 
@@ -96,4 +107,6 @@ footer {
     color: #d8c2a3;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
 }

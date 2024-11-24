@@ -19,7 +19,6 @@ header{
     align-items: center;
     width: 100%;
     height: 200px;
-    overflow: hidden;
     background-color: #467d47;
 }
 
@@ -63,67 +62,46 @@ header{
     padding: 20px;
     color: #467d47;
 }
+
 .content h1 {
     font-size: 2em;
     padding-bottom: 20px;
     margin-bottom: 10px;
+    border-bottom: solid 1px #d8c2a3;
     text-align: center;
-}
-
-.review-form {
     width: 100%;
-    max-width: 500px;
-    text-align: left;
 }
 
-textarea {
+.book {
+    margin: 10px;
+    padding: 15px;
     width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    resize: none;
+    border: 2px solid #467d47;
+    border-radius: 10px;
 }
 
-.rating {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+.book h2 {
+    margin-bottom: 5px;
+    padding: 0 0 0 10px;
 }
 
-.rating input[type="checkbox"] {
-    display: none;
+.book-cover, .book-details {
+    margin-bottom: 5px;
+    padding: 5px 10px;
 }
 
-.rating label {
-    font-size: 2em;
-    color: #ddd;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-    text-align: left;
-}
-
-.rating input[type="checkbox"]:checked ~ label {
-    color: #ffd700;
-}
-
-.rating label:hover,
-.rating label:hover ~ label {
-    color: #ffd700;
-}
-
-.submit-btn {
-    margin-top: 20px;
+.view-btn {
+    display: inline-block;
     padding: 10px 20px;
+    color: white;
     background-color: #467d47;
-    color: #fff;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+    text-decoration: none;
 }
 
-.submit-btn:hover {
-    background-color: #345c34;
+.view-btn:hover {
+    color: #d8c2a3;
 }
 
 footer {
@@ -133,4 +111,6 @@ footer {
     color: #d8c2a3;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
 }

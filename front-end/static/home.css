@@ -19,7 +19,6 @@ header{
     align-items: center;
     width: 100%;
     height: 200px;
-    overflow: hidden;
     background-color: #467d47;
 }
 
@@ -107,6 +106,6 @@ footer {
     color: #d8c2a3;
     bottom: 0;
     width: 100%;
-    /*position: sticky;*/
-
+    margin-top: auto;
+    flex-shrink: 0;
 }

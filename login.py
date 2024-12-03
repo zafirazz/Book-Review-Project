@@ -106,6 +106,11 @@ def search():
 
     return render_template('search.html', query=query, results=results)
 
+@app.route('/front-end/read_review', methods=['GET', 'POST'])
+def read_review():
+    logging.debug("i am in review function")
+    books = Book.query.all()
+    return render_template('read_review.html', books=books)
 
 @app.route('/front-end/logout', methods=['GET', 'POST'])
 def logout():

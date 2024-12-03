@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book List</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='navbar.css') }}">
 </head>
 <body>
     <header>
@@ -13,13 +14,20 @@
     <div class="navbar">
         <div class="navbar_left">
             <a href="{{ url_for('search') }}" class="search">Search</a>
-            <a href="{{ url_for('review') }}" class="review">Review now!</a>
+            <div class="menu_review">
+                <a href="" class="menu_title">Reviews<small>▼</small></a>
+                <div class="menu_content">
+                    <a href="{{ url_for('read_review') }}">See Reviews</a>
+                    <a href="{{ url_for('review') }}">Review Now!</a>
+                </div>
+            </div>
         </div>
         <div class="navbar_right">
             <a href="{{ url_for('login') }}" class="login">Login</a>
             <a href="{{ url_for('register') }}" class="register">Register</a>
         </div>
     </div>
+
     <div class="content">
         <h1>Available Books</h1>
         {% for book in books %}
@@ -29,12 +37,12 @@
                 <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
             </div>
             <div class="book-details">
-<!--            <p>Title: <strong>{{ book.title }}</strong></p>-->
                 <p>Author: <strong>{{ book.author }}</strong></p>
                 <p>Release date: <strong>{{ book.year }}</strong></p>
                 <p>Description: <br>{{ book.short_description }}</p>
             </div>
             <a href="/books/{{ book.isbn }}" class="view-btn">Review This Book!</a>
+            <a href="{{ url_for('read_review') }}" class="view-btn">Read Reviews</a>
         </div>
         {% endfor %}
     </div>

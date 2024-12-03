@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Reviewer</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',filename='navbar.css') }}">
 </head>
 <body>
     <header>
@@ -15,7 +14,13 @@
     <div class="navbar">
         <div class="navbar_left">
             <a href="{{ url_for('search') }}" class="search">Search</a>
-            <a href="{{ url_for('review') }}" class="review">Review now!</a>
+            <div class="menu_review">
+                <a href="" class="menu_title">Reviews<small>▼</small></a>
+                <div class="menu_content">
+                    <a href="{{ url_for('read_review') }}">See Reviews</a>
+                    <a href="{{ url_for('review') }}">Review Now!</a>
+                </div>
+            </div>
         </div>
         <div class="navbar_right">
             <a href="{{ url_for('login') }}" class="login">Login</a>

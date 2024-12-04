@@ -91,7 +91,9 @@ def login():
 
 @app.route('/front-end/home', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    logging.debug("i am in review function")
+    books = Book.query.all()
+    return render_template('home.html', books=books)
 
 
 @app.route('/front-end/search', methods=['GET', 'POST'])

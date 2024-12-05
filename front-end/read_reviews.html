@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='review.css') }}">
+    <title>Book Reviewer</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='read_review.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='navbar.css') }}">
 </head>
 <body>
@@ -28,24 +28,26 @@
         </div>
     </div>
 
+<h1> Reviews of the Book!</h1>
     <div class="content">
-        <h1>Available Books</h1>
-        {% for book in books %}
-        <div class="book">
-            <h2>{{ book.title }}</h2>
-            <div class="book-cover">
-                <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
+        <div class="contain-divs">
+            <div class="book-image">
+                <img id="book-img" src="{{ book.cover_url }}">
             </div>
-            <div class="book-details">
+            <div class="review-area">
+                <h2> {{ book.title }}</h2><br>
                 <p>Author: <strong>{{ book.author }}</strong></p>
                 <p>Release date: <strong>{{ book.year }}</strong></p>
-                <p>Description: <br>{{ book.short_description }}</p>
+                <p>Description:</p> <p>{{ book.short_description }}</p>
+                <br>
+                {% for review,user in reviews %}
+                <p>User:</p> <p>{{ user.username }}</p>
+                <p>Review:</p> <p>{{ review.review }}</p>
+                {% endfor %}
             </div>
-            <a href="{{ url_for('book_page', book=book.isbn) }}" class="view-btn">Review This Book!</a>
-            <a href="{{ url_for('read_reviews', book=book.isbn) }}" class="view-btn">Read Reviews</a>
         </div>
-        {% endfor %}
     </div>
+
     <footer>
         &copy; 2024 Book Reviewer
     </footer>

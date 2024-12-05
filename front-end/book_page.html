@@ -40,22 +40,15 @@
                 <p>Release date: <strong>{{ book.year }}</strong></p>
                 <p>Description:</p> <p>{{ book.short_description }}</p>
                 <br>
-                <form action="" method="POST">
-                  <h4>  <label for="review-written"> Write review below! </label></h4>
-
-                            <textarea id="review-written" maxlength="2000" placeholder=" Max 2000 characters"></textarea>
-
-                            <input type="hidden" value="" id="username"> <!-- @julia here u can make the value as the session username -->
-
+                <form action="http://127.0.0.1:5000/front-end/book_page?book={{ book.isbn }}" method="POST">
+                    <h4><label for="review-written"> {{username}} write review below! </label></h4>
+                    <textarea id="review-written" name="review-written" maxlength="2000" placeholder=" Max 2000 characters"></textarea>
+                    <input type="hidden" value="{{username}}" id="username">
                     <div class="submit-container">
                         <input type="submit" id="submit" value="Submit">
                     </div>
-
                 </form>
-
             </div>
-
-
         </div>
     </div>
 

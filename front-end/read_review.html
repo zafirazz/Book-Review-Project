@@ -41,7 +41,7 @@
                 <p>Release date: <strong>{{ book.year }}</strong></p>
                 <p>Description: <br>{{ book.short_description }}</p>
             </div>
-            <a href="{{ url_for('read_review') }}" class="view-btn">Read Reviews</a>
+            <a href="{{ url_for('read_reviews', book=book.isbn) }}" class="view-btn">Read Reviews</a>
         </div>
         {% endfor %}
     </div>

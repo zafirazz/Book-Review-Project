@@ -11,10 +11,10 @@ from db import db
 from models import Book, User_Data
 
 
-engine = create_engine('postgresql://localhost:5432/postgres')
+engine = create_engine('postgresql+psycopg2://alishba:alishba@localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://alishba:alishba@localhost:5432/postgres'
 app.secret_key=["hioergerhgoierhgierhogiehgoieagawoeigyireyg"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -126,6 +126,14 @@ def review():
     logging.debug("i am in review function")
     books = Book.query.all()
     return render_template('review.html', books=books)
+
+@app.route('/front-end/book_page')
+def book_page():
+    book_isbn = request.args.get('book')
+
+    book = Book.query.filter_by(isbn=book_isbn).first()
+    # Do something with book_isbn, like fetching book details
+    return render_template('book_page.html', book=book)
 
 
 def initialize_database():

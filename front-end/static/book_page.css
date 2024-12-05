@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+ h1 {
+   font-size: 2em;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-bottom: solid 1px #d8c2a3;
+    text-align: center;
+    width: 100%;
+    color:#467d47;
+}
+
+p {
+    margin: 3px;
+}
+
+
+.contain-divs{
+    display: flex;
+    color: black;
+    min-height: 80vh;
+}
+
+
+/*.book-image{*/
+/*    display: inline-block;*/
+/*    width: 30%;*/
+/*    !*min-height: 100vh;*!*/
+/*    margin: 5px;*/
+/*}*/
+/*.book-image img {*/
+/*    max-width: 100%;*/
+/*    max-height: 100%;*/
+/*    object-fit: cover;*/
+/*}*/
+
+
+.book-image {
+    display: inline-block;
+    width: 30%;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-image img {
+    width: 95%;
+    height: 90%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+}
+
+.review-area{
+    display: inline-block;
+    width: 70%;
+    /*min-height: 100vh;*/
+    margin: 5px;
+}
+
+#book-title{
+    margin-bottom: 5px;
+
+}
+
+#book-description{
+    margin-bottom: 10px;
+}
+textarea{
+    margin-top: 15px;
+    width: 100%;
+    min-height: 150px;
+    object-fit: cover;
+    align-self: center;
+    overflow: auto;
+    resize: none;
+
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adds some space above the button */
+}
+
+#submit {
+    padding: 10px 20px; /* Adjust button size */
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #467d47;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /*transition: background-color 0.3s ease;*/
+}
+
+#submit:hover {
+    background-color: #356b35; /* Slightly darker green on hover */
+}
+
+
+

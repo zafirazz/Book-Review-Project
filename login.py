@@ -8,10 +8,10 @@ from db import db
 from models import Book, User_Data, Review
 
 
-engine = create_engine('postgresql+psycopg2://julia:new_password@localhost:5432/postgres')
+#engine = create_engine('postgresql+psycopg2://username:password@localhost:5432/postgres')
 
 app = Flask(__name__, template_folder='front-end', static_folder='front-end/static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://julia:new_password@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://@localhost:5432/postgres'
 app.secret_key=["hioergerhgoierhgierhogiehgoieagawoeigyireyg"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

@@ -9,6 +9,7 @@ In order to get the website running, check requirements.txt.
 ### Installing
 
 After downloading the necessary requirements and opening this project on Pycharm, click on the database tab on the right and connect to postgresSQL
+
 <img alt="img.png" height="200" src="images/img.png" width="400"/>
 
 if you choose the "No auth" option, running login.py should be successful. <br>
@@ -34,6 +35,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 ```
 
 Running login.py should present the following output in the terminal:
+
 ![img_1.png](images/img_1.png)
 
 ### Working With The Website
@@ -43,10 +45,12 @@ Accessing the provided link from the terminal and adding "front-end/[write into 
 Examples:
 <br>
 http://127.0.0.1:5000/front-end/home
+
 <img alt="img_3.png" height="200" src="images/img_3.png" width="400"/>
 
 
 http://127.0.0.1:5000/front-end/search
+
 <img alt="img_2.png" height="200" src="images/img_2.png" width="400"/>
 
 ### Key Features

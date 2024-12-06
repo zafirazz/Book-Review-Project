@@ -1,3 +1,8 @@
+'''
+    This python file implements functionality of the web application with a review function.
+    It uses Flask framework for backend and SQLAlchemy for DB interactions.
+'''
+
 import logging
 from functools import wraps
 from flask import request, redirect, url_for, session, render_template, Flask, jsonify
@@ -7,6 +12,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db import db
 from models import Book, User_Data, Review
 
+'''
+    The application includes following functionalities:
+        1. User authentication 
+        2. Book searching and reviewing functionality
+'''
 
 #engine = create_engine('postgresql+psycopg2://username:password@localhost:5432/postgres')
 
@@ -29,9 +39,33 @@ def login_required(f):
 
     return decorated_function
 
+'''
+    There are following routes available:
+        - '/front-end/login' -- User login.
+        - '/front-end/register' -- User registration.
+        - '/front-end/home' -- Home page of the application.
+        - '/front-end/search' -- Search functionality to look for books based on keywords like title or author.
+        - '/front-end/review' -- Review functionality.
+        - '/front-end/book_page' -- List of available books.
+        - '/front-end/read_review' -- Read review functionality.
+        
+'''
 
 @app.route('/front-end/register', methods=['GET', 'POST'])
 def register():
+    '''
+    Handles user registration.
+
+    Methods:
+        GET: Displays the registration form.
+        POST: Validates user input, saves user data to the database, and redirects to the login page.
+
+    Validation:
+        - Username must not be empty or already taken.
+        - Password and confirmation must match.
+
+    :return:redirect to home page on successful registration. And error message on failure.
+    '''
     logging.debug("I am in register function")
     session.clear()
     if request.method == 'POST':
@@ -56,11 +90,30 @@ def register():
 
 
 def login_error(message, code=400):
+    '''
+    Returns error message on failure of registration.
+    :param message: text of the error.
+    :param code: status code of the error.
+    :return: rendered error message
+    '''
     return render_template("login_error.html", top=code, bottom=message), code
 
 
 @app.route('/front-end/login', methods=['GET', 'POST'])
 def login():
+    '''
+    Handles user login.
+
+    Methods:
+        GET: Displays the login form.
+        POST: Validates user credentials and sets session data on successful login.
+
+    Validation:
+        - Username and password must not be empty.
+        - Password must match the hash stored in the database.
+
+    :return:redirects to review page on successful login. And error message on failure.
+    '''
     session.clear()
     logging.debug("I am in login function")
     if request.method == "POST":
@@ -88,6 +141,10 @@ def login():
 
 @app.route('/front-end/home', methods=['GET', 'POST'])
 def home():
+    '''
+    Displays list of available books on home page.
+    :return:Renders the home page with a list of books fetched from the database.
+    '''
     logging.debug("i am in review function")
     books = Book.query.all()
     return render_template('home.html', books=books)
@@ -95,6 +152,10 @@ def home():
 
 @app.route('/front-end/search', methods=['GET', 'POST'])
 def search():
+    '''
+    Handles book search functionality by title or author keywords.
+    :return: Renders the search page with a list of found books.
+    '''
     query = request.args.get('query', '').strip()
     results = []
 
@@ -109,6 +170,10 @@ def search():
 @app.route('/front-end/review', methods=['GET', 'POST'])
 @login_required
 def review():
+    '''
+    Handles book review functionality.
+    :return: Renders the review submission page.
+    '''
     logging.debug("i am in review function")
     books = Book.query.all()
     return render_template('review.html', books=books)
@@ -116,6 +181,12 @@ def review():
 
 @app.route('/front-end/book_page',  methods=['GET', 'POST'])
 def book_page():
+    '''
+    Displays details of a specific book and allows the user to submit a review.
+    Args:
+        - book (query parameter): The ISBN of the book.
+    :return: Renders the book details and review form.
+    '''
     book_isbn = request.args.get('book')
     username = session['username']
     userid = session['user_id']
@@ -149,6 +220,12 @@ def read_reviews():
    return render_template('read_reviews.html', book=book, reviews=reviews)
 
 def initialize_database():
+    '''
+    Initializes the database by creating the required tables.
+
+    This function runs before starting the server.
+    :return: created DB
+    '''
     with app.app_context():
         db.create_all()
         print("Database tables for user data created.")

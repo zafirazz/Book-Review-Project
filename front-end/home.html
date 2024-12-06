@@ -29,20 +29,19 @@
     </div>
 
     <div class="content">
-    <h1>Share and Find your favorite books!</h1>
-    <h2>↓ Top Picks: Best Sellers You'll Like ↓</h2>
-    <div class="book-list">
-        {% for book in books %}
-        <div class="book">
-            <div class="book-cover">
-                <a href="{{ url_for('read_review') }}"><img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image"></a>
+        <h1>Share and Find your favorite books!</h1>
+        <h2>↓ Top Picks: Best Sellers You'll Like ↓</h2>
+        <div class="book-list">
+            {% for book in books %}
+            <div class="book">
+                <div class="book-cover">
+                    <a href="{{ url_for('read_review') }}#{{ book.title }}"><img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image"></a>
+                </div>
+                <a href="{{ url_for('read_review') }}#{{ book.title }}">{{ book.title }}</a>
             </div>
-            <a href="{{ url_for('read_review') }}">{{ book.title }}</a>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
-
 
     <footer>
         &copy; 2024 Book Reviewer

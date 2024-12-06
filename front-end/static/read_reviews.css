@@ -25,6 +25,7 @@
 
 p {
     margin: 3px;
+    color: black;
 }
 
 .book .book-cover {
@@ -36,57 +37,37 @@ p {
     padding: 10px;
 }
 
-.review-area{
-    display: inline-block;
-    width: 70%;
-    margin: 5px;
-}
-
-.content h4 strong {
-    text-transform: uppercase;
-}
-
-#book-title{
-    margin-bottom: 5px;
-}
-
-#book-description{
-    margin-bottom: 10px;
-}
-
-textarea{
-    margin-top: 15px;
-    width: 100%;
-    min-height: 150px;
-    object-fit: cover;
-    align-self: center;
-    overflow: auto;
-    resize: none;
+.reviews-container {
+    margin: 10px;
+    padding: 5px;
+    width: 80%;
+    color: black;
     border: 1px solid #467d47;
     border-radius: 3px;
 }
 
-.submit-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+.review {
+    padding: 15px;
+    margin: 5px;
+    border-bottom: 1px solid #d8c2a3;
 }
 
-#submit {
+.review:last-child {
+    border-bottom: none;
+}
+
+.view-btn {
+    display: inline-block;
+    margin-top: 10px;
     padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #467d47;
     color: white;
-    border: none;
+    background-color: #467d47;
     border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
 }
 
-#submit:hover {
+.view-btn:hover {
     color: #d8c2a3;
     background-color: #3b653b;
 }
-
-
-

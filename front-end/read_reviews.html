@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Reviewer</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='read_review.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='read_reviews.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='navbar.css') }}">
 </head>
 <body>
@@ -28,24 +28,28 @@
         </div>
     </div>
 
-<h1> Reviews of the Book!</h1>
     <div class="content">
-        <div class="contain-divs">
-            <div class="book-image">
-                <img id="book-img" src="{{ book.cover_url }}">
+        <h1> Reviews of {{ book.title }}!</h1>
+        <div class="book">
+            <div class="book-cover">
+                <img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}" class="cover-image">
             </div>
-            <div class="review-area">
-                <h2> {{ book.title }}</h2><br>
+            <div class="book-details">
+                <p>Title: <h2>{{ book.title }}</h2></p>
                 <p>Author: <strong>{{ book.author }}</strong></p>
                 <p>Release date: <strong>{{ book.year }}</strong></p>
-                <p>Description:</p> <p>{{ book.short_description }}</p>
-                <br>
-                {% for review,user in reviews %}
-                <p>User:</p> <p>{{ user.username }}</p>
-                <p>Review:</p> <p>{{ review.review }}</p>
-                {% endfor %}
+                <p>Description:</p><p>{{ book.short_description }}</p>
             </div>
         </div>
+        <div class="reviews-container">
+            {% for review,user in reviews %}
+            <div class="review">
+                <p>Username: <strong>{{ user.username }}</strong></p>
+                <p>Comments: <br><strong>{{ review.review }}</strong></p>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('read_review') }}" class="view-btn">Back</a>
     </div>
 
     <footer>

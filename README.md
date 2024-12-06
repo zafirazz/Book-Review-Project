@@ -13,11 +13,11 @@ A website where users can write and read reviews for books.
 * The website's user interface will incorporate cohesive branding, including logos and a consistent color scheme.
 
 the webpage is available when login.py is run, in the terminal you should be provided with the following:
-![img_1.png](img_1.png)
+![img_1.png](images/img_1.png)
 accessing the provided link and adding "front-end/[write into the url any html file found in front-end directory]"
 
 example: http://127.0.0.1:5000/front-end/home
-![img_3.png](img_3.png)
+![img_3.png](images/img_3.png)
 example: http://127.0.0.1:5000/front-end/search
-![img_2.png](img_2.png)
+![img_2.png](images/img_2.png)
 
